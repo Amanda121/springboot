@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.macro.mall.dao.PostRequirementDao">
+    <resultMap id="listWithNameMap" type="com.macro.mall.dto.PostRequirementWithNameItem"
+               extends="com.macro.mall.mapper.PmsProductCategoryMapper.BaseResultMap">
+        <collection property="children" resultMap="com.macro.mall.mapper.PmsProductCategoryMapper.BaseResultMap"
+                    columnPrefix="child_"></collection>
+    </resultMap>
+    <select id="listWithName" resultMap="listWithNameMap">
+        select
+            c1.name
+        from pms_product_category c1
+        where c1.parent_id = 0
+    </select>
+</mapper>
